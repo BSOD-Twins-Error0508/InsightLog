@@ -1,6 +1,10 @@
 # Known Bugs and Replication Steps
 
-
+## 1. remove_filter does not remove by index
+- **How to replicate:**
+  - Create an analyzer, add three filters: 'a', 'b', 'c'.
+  - Call `remove_filter(1)`.
+  - Instead of removing the second filter, it may raise a ValueError or remove the wrong filter.
 
 ## 2. filter_data returns None on error instead of raising
 - **How to replicate:**
