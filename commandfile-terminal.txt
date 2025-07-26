@@ -1,0 +1,2 @@
+python main.py --service nginx --logfile insightlog/dummy.log --export_json export.json
+python main.py --service nginx --logfile insightlog/dummy.log --export export.csv

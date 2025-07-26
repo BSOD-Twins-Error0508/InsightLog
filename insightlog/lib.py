@@ -1,4 +1,6 @@
 import re
+import json
+import csv
 import calendar
 from insightlog.settings import *
 from insightlog.validators import *
@@ -272,8 +274,8 @@ class InsightLogAnalyzer:
         :param index:
         :return:
         """
-        # BUG: This method does not remove by index
-        self.__filters.remove(index)
+        # BUG: Gefixt ! 
+        del self.__filters[index]
 
     def clear_all_filters(self):
         """
@@ -353,10 +355,19 @@ class InsightLogAnalyzer:
 
     # TODO: Add export to CSV
     def export_to_csv(self, path):
+        data = self.filter_all()
+        with open(path, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['Log Line'])
+            for line in data:
+                writer.writerow([line])
+    
+    def export_to_json(self, path):
         """
-        Export filtered results to a CSV file
-        :param path: string
+        Export filtered results to a JSON file
         """
-        pass  # Feature stub
+        data = self.filter_all()
+        with open(path, 'w', encoding='utf-8') as jsonfile:
+            json.dump(data, jsonfile, indent=4, ensure_ascii=False)
 
 # TODO: Write more tests for edge cases, error handling, and malformed input
