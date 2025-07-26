@@ -334,13 +334,13 @@ class InsightLogAnalyzer:
             # TODO: Support more log formats (e.g., IIS, custom logs)
             return None
 
-    # TODO: Add log level filtering (e.g., only errors)
     def add_log_level_filter(self, level):
         """
-        Add a filter for log level (e.g., ERROR, WARNING)
+        Add a filter for log level (e.g., ERROR, WARNING).
+        This is a case-insensitive filter.
         :param level: string
         """
-        pass  # Feature stub
+        self.add_filter(level, is_casesensitive=False)
 
     # TODO: Add support for time range filtering
     def add_time_range_filter(self, start, end):
